@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/react-hooks";
-import { ADD_USER } from "../../mutations";
-import { GET_USERS_EMAILS } from "../../queries";
-import useAddUser from "./useAddUser";
+import ErrorMessage from "../ErrorMessage";
+import useAddUser from "./useCreateUsers";
 
 export default function AddUser() {
     const [emailValue, setEmailValue] = useState<string>("");
-    const addUser = useAddUser();
+    const { addUser, loading, error, mutationError } = useAddUser();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         addUser(emailValue);
+        setEmailValue("");
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +24,8 @@ export default function AddUser() {
                 type="text"
                 placeholder="email"
             ></input>
-            <button>Add User!</button>
+            <button disabled={loading}> Add User!</button>
+            {error && <ErrorMessage error={error} />}
         </form>
     );
 }

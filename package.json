@@ -15,6 +15,7 @@
     "graphql": "^15.5.0",
     "micro": "^9.3.4",
     "neo4j-driver": "^4.2.2",
+    "neo4j-graphql-js": "^2.19.2",
     "next": "10.0.6",
     "react": "17.0.1",
     "react-dom": "17.0.1"

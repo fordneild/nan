@@ -1,19 +1,24 @@
+import { gql } from "apollo-server-micro";
 // Describe our GraphQL schema with type definitions
 export const typeDefs = `
-  type User {
-    email: String!
-  }
-
-  type Query {
-      hello: String!
-      userCount: Int! @cypher(statement: "MATCH (u:User) RETURN COUNT(u)")
+    type User {
+        userId: ID! @id
+        email: String! @unique
     }
-    
-    type Mutation {
-      addUser(email: String!): User! @cypher(statement: "CREATE (u:User {email: $email}) RETURN u")
-    }
-  `
 
+    type Query {
+        hello: String!
+        userCount: Int!
+            @cypher(statement: "MATCH (u:User) RETURN COUNT(u) as userCount")
+    }
+
+    # type Mutation {
+    #     addUser(id: ID!, email: String!): User!
+    #         @cypher(
+    #             statement: "CREATE (u:User {id: $id, email: $email}) RETURN u"
+    #         )
+    # }
+`;
 
 export const oldtypeDefs = `
   type Business {
@@ -72,4 +77,4 @@ export const oldtypeDefs = `
       statement: "MATCH (r:Review) WITH r.stars AS stars, COUNT(*) AS count ORDER BY stars RETURN {stars: stars, count: count}"
     )
   }
-`
+`;
