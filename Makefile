@@ -1,7 +1,7 @@
 install:
 	@npm install
 
-api:
+app:
 	@npm run dev
 
 db:
