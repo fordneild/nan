@@ -1,4 +1,7 @@
-up:
+install:
+	@npm install
+
+api:
 	@npm run dev
 
 db:
