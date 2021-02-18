@@ -13,9 +13,8 @@ export default function useSearchUser() {
     useEffect(() => {
         if (!loading && !error && data) {
             setUsers(
-                data?.User.map(({ email, userId }: any) => ({
-                    email,
-                    userId
+                data?.User.map(({ email }: any) => ({
+                    email
                 })).sort(
                     (
                         { email: emailA }: { email: any },

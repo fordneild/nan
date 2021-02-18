@@ -24,5 +24,5 @@
     "**/*.tsx", "util/protect.js"  ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }

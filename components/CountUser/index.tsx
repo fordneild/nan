@@ -1,4 +1,4 @@
-import QueryResult from "../QueryResult";
+import QueryResult from "../hoc/QueryResult";
 import useCountUser from "./useCountUser";
 
 export default function CountUser() {

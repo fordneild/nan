@@ -1,6 +1,5 @@
-// import { ApolloProvider } from "@apollo/client";
-import { useApollo } from "../apollo/client";
-import { ApolloProvider } from "@apollo/react-hooks";
+import AuthProvider from "../components/hoc/AuthProvider";
+import ApolloProvider from "../components/hoc/ApolloProvider";
 
 export default function App({
     Component,
@@ -9,11 +8,14 @@ export default function App({
     Component: any;
     pageProps: any;
 }) {
-    const apolloClient = useApollo(pageProps.initialApolloState);
-
     return (
-        <ApolloProvider client={apolloClient}>
-            <Component {...pageProps} />
-        </ApolloProvider>
+        <AuthProvider
+            initialToken={pageProps?.initialToken}
+            initialApolloState={pageProps?.initalApolloState}
+        >
+            <ApolloProvider>
+                <Component {...pageProps} />
+            </ApolloProvider>
+        </AuthProvider>
     );
 }

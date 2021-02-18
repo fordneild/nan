@@ -1,13 +1,14 @@
-import SearchUser from "../components/SearchUser";
-import CreateUser from "../components/CreateUser";
-import CountUser from "../components/CountUser";
+import React from "react";
+import ProtectComponent from "../components/hoc/ProtectComponent";
+import Username from "../components/Username";
+import Logout from "../components/Logout";
 
 export default function Home() {
     return (
-        <>
-            <CreateUser />
-            <SearchUser />
-            <CountUser />
-        </>
+        <ProtectComponent>
+            <Logout />
+            <h1>Home Page</h1>
+            <Username />
+        </ProtectComponent>
     );
 }

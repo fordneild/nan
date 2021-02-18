@@ -3,14 +3,18 @@ import React from "react";
 
 export default function ErrorMessage({ error }: { error: ApolloError }) {
     const { message } = error;
-    const errorCode = error.graphQLErrors[0].extensions?.exception?.code;
+    const errorCode = error.graphQLErrors[0]?.extensions?.exception?.code;
     let uiMessage;
-    switch (errorCode) {
-        case "Neo.ClientError.Schema.ConstraintValidationFailed":
-            uiMessage = parseMessageFromConstaintValidationFailed(message);
-            break;
-        default:
-            uiMessage = message;
+    if (errorCode === "Neo.ClientError.Schema.ConstraintValidationFailed") {
+        // email taken
+        uiMessage = parseMessageFromConstaintValidationFailed(message);
+    } else if (message === "Authorization Error") {
+        //wrong username/password
+        uiMessage = "Incorrect username/password combination";
+    } else {
+        console.log({ errorCode });
+        console.log({ "uknown error": error });
+        uiMessage = message;
     }
     return <p style={{ color: "red" }}>{uiMessage}</p>;
 }

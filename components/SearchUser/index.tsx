@@ -1,4 +1,4 @@
-import QueryResult from "../QueryResult";
+import QueryResult from "../hoc/QueryResult";
 import useSearchUser from "./useSearchUser";
 
 export default function SearchUser() {
@@ -6,12 +6,8 @@ export default function SearchUser() {
     return (
         <QueryResult loading={loading} error={error}>
             <ul>
-                {users.map(({ email, userId }, index) => {
-                    return (
-                        <li key={index}>
-                            {userId} {email}
-                        </li>
-                    );
+                {users.map(({ email }, index) => {
+                    return <li key={index}>{email}</li>;
                 })}
             </ul>
         </QueryResult>

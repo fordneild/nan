@@ -1,22 +1,16 @@
 import fetch from "cross-fetch";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { ApolloLink } from "apollo-link";
 // we must convert the file Buffer to a UTF-8 string
 let apolloClient: any;
 
-const authMiddleware = (authToken = "") =>
-    new ApolloLink((operation, forward) => {
-        // add the authorization to the headers
-        if (authToken) {
-            operation.setContext({
-                headers: {
-                    authorization: `Bearer ${authToken}`
-                }
-            });
-        }
-        return forward(operation);
-    });
+const getAuthHeaders = (token = "") => {
+    if (!token) return null;
+    console.log("Attaching auth heads to requests");
+    return {
+        authorization: `Bearer ${token}`
+    };
+};
 
 function createIsomorphLink(token = "") {
     if (typeof window === "undefined") {
@@ -25,12 +19,12 @@ function createIsomorphLink(token = "") {
         return new SchemaLink({ schema });
     } else {
         const { HttpLink } = require("@apollo/client/link/http");
-        const httpLink = new HttpLink({
+        return new HttpLink({
             uri: "api/graphql",
+            headers: getAuthHeaders(token),
             credentials: "same-origin",
             fetch
         });
-        return authMiddleware(token).concat(httpLink);
     }
 }
 
@@ -42,8 +36,13 @@ function createApolloClient(token = "") {
     });
 }
 
-export function initializeApollo(initialState = null, token = "") {
-    const _apolloClient = apolloClient ?? createApolloClient(token);
+export function initializeApollo(initialState: any, token = "") {
+    /* make a new client if 
+    there is a token (new client wuth authorized headers needed), 
+        OR 
+    there was no client made before (a client is needed)
+    */
+    const _apolloClient = createApolloClient(token);
 
     // If your page has Next.js data fetching methods that use Apollo Client, the initial state
     // get hydrated here
@@ -59,17 +58,10 @@ export function initializeApollo(initialState = null, token = "") {
 }
 
 /* istanbul ignore next */
-export function useApollo(initialState: any) {
-    const [token, setToken] = useState<string>("");
-    useEffect(() => {
-        setTimeout(() => {
-            console.log("setting token");
-            setToken("token");
-        }, 3000);
-    }, []);
-    const store = useMemo(() => initializeApollo(initialState, token), [
+export function useApollo(initialState: any, token: string) {
+    const client = useMemo(() => initializeApollo(initialState, token), [
         initialState,
         token
     ]);
-    return store;
+    return client;
 }
