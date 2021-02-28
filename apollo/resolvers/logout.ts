@@ -1,4 +1,4 @@
-import { clearRefreshToken } from "../../util/refreshToken";
+import { clearRefreshToken } from "../../lib/refreshToken";
 const logout = async (_: any, __: any, context: any, ____: any) => {
     try {
         clearRefreshToken(context);

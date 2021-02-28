@@ -1,0 +1,11 @@
+.feed {
+    display: flex;
+    flex-wrap: column;
+    width: 100%;
+    max-width: 600px;
+    li {
+        width: 100%;
+        list-style-type: none;
+        padding: 5px 10px;
+    }
+}

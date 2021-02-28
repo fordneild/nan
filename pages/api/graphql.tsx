@@ -1,8 +1,8 @@
 import { ApolloServer } from "apollo-server-micro";
 import { getAugmentedSchema } from "../../apollo/schema";
 import { neo4jDriverInstance } from "../../apollo/neo4j-driver";
-import { verify } from "../../util/jwt";
-import { parseRefreshToken } from "../../util/refreshToken";
+import { verify } from "../../lib/jwt";
+import { parseRefreshToken } from "../../lib/refreshToken";
 const httpHeadersPlugin = require("apollo-server-plugin-http-headers");
 
 const isDev = process.env.DEV === "true";

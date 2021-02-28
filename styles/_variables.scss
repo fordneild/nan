@@ -1,0 +1,129 @@
+@import "include-media";
+
+$black-0: #121212;
+$black-1: #181818;
+$black-2: #242424;
+$black-3: #383838;
+$black-4: #505050;
+$black-5: #585858;
+
+$white-0: #c5c5c5;
+$white-1: #e7e7e7;
+$white-2: #f8f8f8;
+
+$danger: #c44040;
+
+$reddit: #ff5700;
+$facebook: #3b5998;
+$instagram: #833ab4;
+
+$padding-0: 8px;
+$padding-1: 12px;
+$padding-2: 16px;
+
+$border-radius-0: 6px;
+$border-radius-1: 10px;
+$border-radius-2: 14px;
+$mobile-max-width: 90%;
+
+$header-height: 80px;
+
+$breakpoints: (
+    phone: 440px,
+    tablet: 768px,
+    desktop: 1024px
+);
+
+$font: "Roboto", sans-serif;
+
+@mixin header-0 {
+    font-size: 24px;
+    margin: 10px;
+    text-align: center;
+    color: $white-1;
+}
+
+@mixin card {
+    border-radius: $border-radius-1;
+    padding: $padding-1;
+    border: 1px solid $black-2;
+    background-color: $black-0;
+    color: $white-1;
+    // background-color: $black-1;
+}
+
+@mixin center-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin button {
+    color: $white-2;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid $white-2;
+    border-radius: 12px;
+    padding: 10px 20px;
+    &:hover {
+        cursor: pointer;
+        background: $white-2;
+        color: $black-1;
+        animation: none;
+    }
+}
+
+@mixin no-scroll-bar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+    &::-webkit-scrollbar {
+        width: 0px;
+        background: transparent; /* Chrome/Safari/Webkit */
+    }
+}
+
+//look it up
+@mixin lobotmized-owl($px) {
+    * {
+        margin: 0;
+    }
+    * + * {
+        margin-top: $px;
+    }
+}
+// make sure you have a good reason for using this. parent should have position: relative.
+@mixin center-absolute() {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+}
+
+@mixin no-text-select {
+    .noselect {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+    }
+}
+
+.button {
+    @include button;
+}
+
+.reddit-color {
+    color: $reddit;
+}
+.fb-color {
+    color: $facebook;
+}
+.insta-color {
+    color: $instagram;
+}

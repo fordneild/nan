@@ -3,16 +3,14 @@ import useLogout from "../../hooks/useLogout";
 
 export default function Logout() {
     const { logout, loading } = useLogout();
-    const handleClick = (
-        e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-    ) => {
-        logout();
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (!loading) {
+            logout();
+        }
     };
     return (
         <div>
-            <button disabled={loading} onClick={handleClick}>
-                Logout
-            </button>
+            <a onClick={handleClick}>Logout</a>
         </div>
     );
 }

@@ -2,6 +2,7 @@ import login from "./resolvers/login";
 import logout from "./resolvers/logout";
 import signUp from "./resolvers/signUp";
 import loginWithRefreshToken from "./resolvers/loginWithRefreshToken";
+import reactions from "./resolvers/reactions";
 /**
  * Write resolvers to respond to our queries and mutations
  *
@@ -17,6 +18,9 @@ import loginWithRefreshToken from "./resolvers/loginWithRefreshToken";
  */
 
 export const resolvers = {
+    ContentForUser: {
+        reactions
+    },
     Query: {
         login,
         loginWithRefreshToken,

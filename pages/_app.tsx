@@ -1,5 +1,7 @@
-import AuthProvider from "../components/hoc/AuthProvider";
-import ApolloProvider from "../components/hoc/ApolloProvider";
+import AuthProvider from "../hoc/AuthProvider";
+import ApolloProvider from "../hoc/ApolloProvider";
+import MainLayout from "../hoc/MainLayout";
+import "../styles/globalStyles.scss";
 
 export default function App({
     Component,
@@ -9,13 +11,17 @@ export default function App({
     pageProps: any;
 }) {
     return (
-        <AuthProvider
-            initialToken={pageProps?.initialToken}
-            initialApolloState={pageProps?.initalApolloState}
-        >
-            <ApolloProvider>
-                <Component {...pageProps} />
-            </ApolloProvider>
-        </AuthProvider>
+        <>
+            <AuthProvider
+                initialToken={pageProps?.initialToken}
+                initialApolloState={pageProps?.initalApolloState}
+            >
+                <ApolloProvider>
+                    <MainLayout>
+                        <Component {...pageProps} />
+                    </MainLayout>
+                </ApolloProvider>
+            </AuthProvider>
+        </>
     );
 }

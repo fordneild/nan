@@ -4,16 +4,10 @@ import { useEffect } from "react";
 import { LOGIN_WITH_REFRESH_TOKEN } from "../queries";
 import useAuth from "./useAuth";
 
-export default function useSilentRefresh() {
+export default function useSilentRefresh(onError?: () => void) {
     const { isAuthenticated, setToken } = useAuth();
     const [query, queryState] = useLazyQuery(LOGIN_WITH_REFRESH_TOKEN, {
-        onError: () => {
-            console.log("Error on silent refresh...");
-            console.log({ path: Router.pathname });
-            if (Router.pathname !== "/") {
-                Router.push("/");
-            }
-        }
+        onError
     });
     const token = queryState.data?.loginWithRefreshToken?.token;
     useEffect(() => {

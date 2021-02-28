@@ -14,3 +14,21 @@ export const SIGN_UP = gql`
         }
     }
 `;
+
+export const CREATE_POST = gql`
+    mutation createPost($title: String!, $text: String!) {
+        createPost(title: $title, text: $text) {
+            id
+            title
+            text
+        }
+    }
+`;
+
+export const REACT = gql`
+    mutation react($contentId: ID!, $emotion: Emotion!) {
+        react(contentId: $contentId, emotion: $emotion) {
+            id
+        }
+    }
+`;

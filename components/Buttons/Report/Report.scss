@@ -1,0 +1,8 @@
+.report-button {
+  position: relative;
+  &:hover {
+    .description {
+      display: block;
+    }
+  }
+}

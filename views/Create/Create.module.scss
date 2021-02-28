@@ -1,0 +1,15 @@
+.create {
+    form {
+        display: flex;
+        flex-direction: column;
+        label {
+            p {
+                width: fit-content;
+                display: inline;
+                margin-right: 5px;
+            }
+            input {
+            }
+        }
+    }
+}

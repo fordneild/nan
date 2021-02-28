@@ -6,10 +6,30 @@ export const GET_USERS_EMAILS = gql`
         }
     }
 `;
-export const GET_USERNAME = gql`
+export const GET_FEED = gql`
+    query getFeed {
+        getFeed {
+            id
+            creator {
+                username
+            }
+            recentReaction
+            ... on Image {
+                caption
+                url
+            }
+            ... on Post {
+                title
+                text
+            }
+        }
+    }
+`;
+export const GET_USER = gql`
     query getUser {
         getUser {
             username
+            email
         }
     }
 `;

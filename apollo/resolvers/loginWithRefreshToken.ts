@@ -1,5 +1,5 @@
-import { sign, verify } from "../../util/jwt";
-import { setRefreshToken } from "../../util/refreshToken";
+import { sign, verify } from "../../lib/jwt";
+import { setRefreshToken } from "../../lib/refreshToken";
 
 export default async function loginWithRefreshToken(
     req: any,

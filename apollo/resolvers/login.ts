@@ -1,6 +1,6 @@
 import { compareSync } from "bcrypt";
-import { sign } from "../../util/jwt";
-import { setRefreshToken } from "../../util/refreshToken";
+import { sign } from "../../lib/jwt";
+import { setRefreshToken } from "../../lib/refreshToken";
 
 const login = async (_: any, args: any, context: any, __: any) => {
     const session = context.driver.session();

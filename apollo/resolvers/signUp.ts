@@ -1,6 +1,6 @@
 import { hash } from "bcrypt";
-import { sign } from "../../util/jwt";
-import { setRefreshToken } from "../../util/refreshToken";
+import { sign } from "../../lib/jwt";
+import { setRefreshToken } from "../../lib/refreshToken";
 const signUp = async (_: any, args: any, context: any, __: any) => {
     args.password = await hash(args.password, 10);
     const session = context.driver.session();
@@ -8,7 +8,7 @@ const signUp = async (_: any, args: any, context: any, __: any) => {
         .run(
             `
 WITH randomUUID() as id
-CREATE (u:User) SET u += $args, u.username = id, u.id = id
+CREATE (u:User) SET u += $args, u.username = id, u.id = id, u.createdAt = datetime()
 RETURN u
 `,
             { args }

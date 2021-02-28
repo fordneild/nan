@@ -1,0 +1,7 @@
+.fa-heart {
+  font-size: 24px;
+  transform: scaleX(0.95);
+  &.liked {
+    color: rgb(255, 112, 136);
+  }
+}

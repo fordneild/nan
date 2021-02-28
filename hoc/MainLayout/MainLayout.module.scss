@@ -1,0 +1,12 @@
+.mainLayout {
+    background-color: #111111;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    .mainContent {
+        padding: 0% 10%;
+    }
+}
